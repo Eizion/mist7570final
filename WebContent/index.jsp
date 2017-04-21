@@ -10,13 +10,15 @@
     
     <h1>Log In</h1>
     
-    <form id="loginForm" action="Login" method="POST">
+    <form id="loginForm" action="Login" method="post">
 	
-		<input type="text" name="username" value="Username" required><br>
-		<input type="password" name="password" value="Password" required><br>
+		<input type="text" name="username" value="Username" required /><br>
+		<input type="password" name="password" value="Password" required /><br>
 		<input type="submit" value="Login"><br>
 
 	</form>
+	
+	<a href="registerForm.jsp">register</a>
 	
 </body>
 </html>
