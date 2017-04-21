@@ -19,7 +19,7 @@
      <label>
         Password: 
      </label>
-     <input type="text" name="password" required/><br />
+     <input type="password" name="password" required/><br />
      <label>
         First Name: 
      </label>
