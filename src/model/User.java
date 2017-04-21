@@ -3,7 +3,7 @@ package model;
 public class User {
 	
 	private int id;
-	private String userName;
+	private String username;
 	private String password;
 	private String fName;
 	private String lName;
@@ -16,14 +16,14 @@ public class User {
 
 	/**
 	 * @param id
-	 * @param userName
+	 * @param username
 	 * @param password
 	 * @param fName
 	 * @param lName
 	 */
-	public User(int id, String userName, String password, String fName, String lName) {
+	public User(int id, String username, String password, String fName, String lName) {
 		this.id = id;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.fName = fName;
 		this.lName = lName;
@@ -44,17 +44,17 @@ public class User {
 	}
 
 	/**
-	 * @return the userName
+	 * @return the username
 	 */
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * @param userName the userName to set
+	 * @param username the username to set
 	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
@@ -98,8 +98,5 @@ public class User {
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
-	
-	
-	
 
 }
