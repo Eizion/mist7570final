@@ -15,10 +15,10 @@ import model.User;
 import utilities.Encryption;
 
 /**
- * Servlet implementation class LoginServelet
+ * Servlet implementation class LoginServlet
  */
 @WebServlet("/login")
-public class LoginServelet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private HttpSession session; 
@@ -29,7 +29,7 @@ public class LoginServelet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServelet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
