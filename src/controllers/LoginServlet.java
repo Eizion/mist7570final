@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 				session.invalidate();
 				session=request.getSession(true);
 				session.setAttribute("user", user);
-				url="shop.jsp";
+				url="/readProduct";
 			} else {
 				String errorMessage = "Error: Unrecognized Username or Password <br>Login attempts remaining: "+(3-(loginAttempts));
 				request.setAttribute("errorMessage", errorMessage);
