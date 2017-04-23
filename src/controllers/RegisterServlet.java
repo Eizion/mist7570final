@@ -56,8 +56,6 @@ public class RegisterServlet extends HttpServlet {
 		user.setfName(fName);
 		user.setlName(lName);
 		
-		System.out.println(encryptedPass);
-		
 		RegisterQuery rq = new RegisterQuery("online_store", "root", "root");
 		
 		rq.doRegister(user);

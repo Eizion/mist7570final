@@ -73,7 +73,6 @@ public class LoginServlet extends HttpServlet {
 			
 			LoginQuery lq = new LoginQuery("online_store", "root", "root");
 			User user = lq.authenticateUser(username, encryptedPassword);
-			System.out.println(encryptedPassword);
 			
 			if (user != null){
 				session.invalidate();
