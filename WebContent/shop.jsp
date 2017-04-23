@@ -17,9 +17,13 @@
 <div class=header>
 <h1>Product Inventory</h1>
 </div>
+<p>
+	Welcome, ${user.username}!
+</p>
 <div style="overflow-x:auto;">
 	<%= table %>
 </div>
 <br />
+<a href="login?logout=true">Logout</a>
 </body>
 </html>

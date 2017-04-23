@@ -73,12 +73,13 @@ public class LoginServlet extends HttpServlet {
 			
 			LoginQuery lq = new LoginQuery("online_store", "root", "root");
 			User user = lq.authenticateUser(username, encryptedPassword);
+			System.out.println(encryptedPassword);
 			
 			if (user != null){
 				session.invalidate();
 				session=request.getSession(true);
 				session.setAttribute("user", user);
-				url="home.jsp";
+				url="shop.jsp";
 			} else {
 				String errorMessage = "Error: Unrecognized Username or Password <br>Login attempts remaining: "+(3-(loginAttempts));
 				request.setAttribute("errorMessage", errorMessage);

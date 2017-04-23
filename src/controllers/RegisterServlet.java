@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbHelpers.RegisterQuery;
 import model.User;
+import utilities.Encryption;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -45,12 +46,17 @@ public class RegisterServlet extends HttpServlet {
 		String fName = request.getParameter("fname");
 		String lName = request.getParameter("lname");
 		
+		Encryption pwd = new Encryption();
+		String encryptedPass = pwd.encrypt(password);
+		
 		User user = new User();
 		
 		user.setUsername(userName);
-		user.setPassword(password);
+		user.setPassword(encryptedPass);
 		user.setfName(fName);
 		user.setlName(lName);
+		
+		System.out.println(encryptedPass);
 		
 		RegisterQuery rq = new RegisterQuery("online_store", "root", "root");
 		
