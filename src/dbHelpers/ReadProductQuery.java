@@ -86,7 +86,7 @@ public class ReadProductQuery {
 					table += product.getInventoryQuantity();
 				table += "</td>";					
 				table += "<td>";
-					table += "<a href='updateCart?id=" + product.getId() + "'>Add To Cart</a> ";
+					table += "<a href='updateCart?productId=" + product.getId() + "'>Add To Cart</a> ";
 				table += "</td>";	
 				table += "</tr>";
 			}
