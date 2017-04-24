@@ -18,7 +18,7 @@
 <h1>Product Inventory</h1>
 </div>
 <p>
-	Welcome, ${user.username}!
+	Welcome, ${user.fName}!
 </p>
 <div style="overflow-x:auto;">
 	<%= table %>
