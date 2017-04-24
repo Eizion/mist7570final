@@ -62,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		rq.doRegister(user);
 		
-		String url = "/home.jsp";
+		String url = "home.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
