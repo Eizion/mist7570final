@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dbHelpers.ReadCartQuery;
 import dbHelpers.RegisterQuery;
 import dbHelpers.UpdateCartQuery;
 import model.User;
@@ -47,17 +48,25 @@ public class UpdateCartServlet extends HttpServlet {
 		
 		User user = (User) session.getAttribute("user");
 		int productId = Integer.parseInt(request.getParameter("productId"));
+		int quantity;
 		
+		
+		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
 		UpdateCartQuery ucq = new UpdateCartQuery("online_store", "root", "root");
-		
 		
 		// Check to see if product is already in cart
 		
-			// If it is in the cart, pull back the DB quantity and increase the quantity by the appropriate amount
-		
-			// Else, not present in cart
-		ucq.doAdd(user, productId, 1);
-		
+		if(rcq.isInCart(user, productId) == true){
+			// If it is in the cart increment quantity
+			quantity = rcq.lookupQuantity(user, productId);
+			quantity += 1;
+			ucq.doIncrementQuantity(user, productId, quantity);
+			
+		} else {
+			// Else, add to cart
+			ucq.doAdd(user, productId, 1);
+		}
+
 		String url = "/cart.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

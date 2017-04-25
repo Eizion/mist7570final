@@ -3,6 +3,7 @@ package dbHelpers;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Product;
@@ -28,16 +29,38 @@ public class UpdateCartQuery {
 		}
 	}
 	
+	
 	public void doAdd(User user, int productId, int quantity) {
 		
 		String query = "INSERT INTO cart (userId, productId, quantity) VALUES (?, ?, ?)";
 		
 		try {
+			
 			PreparedStatement ps = connection.prepareStatement(query);
 			
 			ps.setInt(1, user.getId());
 			ps.setInt(2, productId);
 			ps.setInt(3, quantity);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void doIncrementQuantity(User user, int productId, int quantity){
+		
+		String query = "UPDATE cart SET quantity=? WHERE userId=? and productId=?";
+		
+		try {
+			
+			PreparedStatement ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, quantity);
+			ps.setInt(2, user.getId());
+			ps.setInt(3, productId);
 			
 			ps.executeUpdate();
 			
@@ -65,5 +88,4 @@ public class UpdateCartQuery {
 		}		
 		
 	}
-
 }
