@@ -75,12 +75,13 @@ public class ReadCartQuery {
 	
 	public int lookupQuantity(User user, int productId) {
 		
+		String query = "SELECT quantity FROM cart WHERE userId = ? and productId = ?";
 		int productCartQuantity = 0;
 		
 		try {
 			
 			
-			PreparedStatement ps = connection.prepareStatement("SELECT quantity FROM cart WHERE userId = ? and productId = ?");
+			PreparedStatement ps = connection.prepareStatement(query);
 			
 			ps.setInt(1, user.getId());
 			ps.setInt(2, productId);
@@ -97,6 +98,59 @@ public class ReadCartQuery {
 		}
 
 		return productCartQuantity;
+	}
+	
+	public void doRead(User user){
+		String query = "SELECT * FROM cart, product WHERE productId = id AND userId = ?";
+		
+		try {
+			PreparedStatement ps = this.connection.prepareStatement(query);
+			
+			ps.setInt(1, user.getId());
+			
+			this.results = ps.executeQuery();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	} 
+	
+	public String getHTMLTable(){
+		String table = "";
+		String productName = "";
+		int quantity = 0;
+		double totalPrice = 0;
+		table += "<table border='1'>";
+		table += "<tr><th>Product Name</th><th>Quantity</th><th>Total Price</th></tr>";
+		
+		try {
+			while(this.results.next()){
+				
+				productName = this.results.getString("name");
+				quantity = this.results.getInt("quantity");
+				totalPrice = this.results.getDouble("price") * quantity;
+				
+				table += "<tr>";
+				table += "<td>";
+					table += productName;
+				table += "</td>";
+				table += "<td>";
+					table += quantity;
+				table += "</td>";					
+				table += "<td>";
+					table += currencyFormatter.format(totalPrice);
+				table += "</td>";		
+				table += "</tr>";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		table += "</table>";
+		
+		return table;
 	}
 
 }

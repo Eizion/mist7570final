@@ -11,22 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dbHelpers.ReadCartQuery;
-import dbHelpers.RegisterQuery;
 import dbHelpers.UpdateCartQuery;
 import model.User;
-import utilities.Encryption;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class GenerateCartServlet
  */
-@WebServlet("/updateCart")
-public class UpdateCartServlet extends HttpServlet {
+@WebServlet("/GenerateCart")
+public class GenerateCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateCartServlet() {
+    public GenerateCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +32,7 @@ public class UpdateCartServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
@@ -47,27 +45,20 @@ public class UpdateCartServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		User user = (User) session.getAttribute("user");
-		int productId = Integer.parseInt(request.getParameter("productId"));
-		int quantity;
-		
 		
 		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
-		UpdateCartQuery ucq = new UpdateCartQuery("online_store", "root", "root");
 		
-		// Check to see if product is already in cart
+		// Query on db
 		
-		if(rcq.isInCart(user, productId) == true){
-			// If it is in the cart increment quantity
-			quantity = rcq.lookupQuantity(user, productId);
-			quantity += 1;
-			ucq.doIncrementQuantity(user, productId, quantity);
-			
-		} else {
-			// Else, add to cart
-			ucq.doAdd(user, productId, 1);
-		}
+		rcq.doRead(user);
+		
+		// Iterate through DB and assign to HTML string
+		String table = rcq.getHTMLTable();
+		
+		// Send string to JSP via request/response object
+		request.setAttribute("table", table);
 
-		String url = "GenerateCart";
+		String url = "cart.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
