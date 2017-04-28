@@ -93,7 +93,11 @@ public class ReadProductQuery {
 					table += "<input type='text' name='quantity' value='0'>";
 				table += "</td>";
 				table += "<td>";
-					table += " <input type='submit' value='Add to Cart'>";
+					if (product.getInventoryQuantity() >0) {
+						table += " <input type='submit' value='Add to Cart'>";
+					} else {
+						table += "Out Of Stock";
+					}
 				table += "</td>";
 				table += "</tr>";
 				table += "</form>";
