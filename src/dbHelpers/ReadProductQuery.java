@@ -60,8 +60,10 @@ public class ReadProductQuery {
 	
 	public String getHTMLTable(){
 		String table = "";
+		
+		
 		table += "<table border='1'>";
-		table += "<tr><th>Name</th><th>Price</th><th>Image</th><th>Quantity In Stock</th><th>Action</th></tr>";
+		table += "<tr><th>Name</th><th>Price</th><th>Image</th><th>Quantity In Stock</th><th colspan='2'>Action</th></tr>";
 		
 		try {
 			while(this.results.next()){
@@ -72,6 +74,8 @@ public class ReadProductQuery {
 				product.setImageAddress(this.results.getString("image_addr"));
 				product.setInventoryQuantity(this.results.getInt("inventory_qty"));
 				
+				table += "<form action='updateCart'>";
+				table += "<input type='hidden' name='productId' value='" + product.getId() + "'>";
 				table += "<tr>";
 				table += "<td>";
 					table += product.getName();
@@ -86,9 +90,14 @@ public class ReadProductQuery {
 					table += product.getInventoryQuantity();
 				table += "</td>";					
 				table += "<td>";
-					table += "<a href='updateCart?productId=" + product.getId() + "'>Add To Cart</a> ";
-				table += "</td>";	
+					table += "<input type='text' name='quantity' value='0'>";
+				table += "</td>";
+				table += "<td>";
+					table += " <input type='submit' value='Add to Cart'>";
+				table += "</td>";
 				table += "</tr>";
+				table += "</form>";
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -96,6 +105,7 @@ public class ReadProductQuery {
 		}
 		 
 		table += "</table>";
+		
 		
 		return table;
 	}

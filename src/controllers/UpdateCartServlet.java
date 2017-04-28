@@ -44,11 +44,17 @@ public class UpdateCartServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();		
 		
-		User user = (User) session.getAttribute("user");
-		int productId = Integer.parseInt(request.getParameter("productId"));
-		int quantity;
+		User user;
+		int productId;
+		int cartQuantity;
+		int	updateQuantity;
+		
+		
+		user = (User) session.getAttribute("user");
+		updateQuantity = Integer.parseInt(request.getParameter("quantity"));
+		productId = Integer.parseInt(request.getParameter("productId"));
 		
 		
 		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
@@ -58,13 +64,13 @@ public class UpdateCartServlet extends HttpServlet {
 		
 		if(rcq.isInCart(user, productId) == true){
 			// If it is in the cart increment quantity
-			quantity = rcq.lookupQuantity(user, productId);
-			quantity += 1;
-			ucq.doIncrementQuantity(user, productId, quantity);
+			cartQuantity = rcq.lookupQuantity(user, productId);
+			updateQuantity += cartQuantity;
+			ucq.doIncrementQuantity(user, productId, updateQuantity);
 			
 		} else {
 			// Else, add to cart
-			ucq.doAdd(user, productId, 1);
+			ucq.doAdd(user, productId, updateQuantity);
 		}
 
 		String url = "GenerateCart";
