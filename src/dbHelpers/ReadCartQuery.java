@@ -121,8 +121,11 @@ public class ReadCartQuery {
 		String productName = "";
 		int quantity = 0;
 		double totalPrice = 0;
+		double grandTotal = 0;
 		table += "<table border='1'>";
+		table += "<thead>";
 		table += "<tr><th>Product Name</th><th>Quantity</th><th>Total Price</th></tr>";
+		table += "</thead>";
 		
 		try {
 			while(this.results.next()){
@@ -130,6 +133,7 @@ public class ReadCartQuery {
 				productName = this.results.getString("name");
 				quantity = this.results.getInt("quantity");
 				totalPrice = this.results.getDouble("price") * quantity;
+				grandTotal += totalPrice;
 				
 				table += "<tr>";
 				table += "<td>";
@@ -147,7 +151,12 @@ public class ReadCartQuery {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
+		
+		table += "<tfoot>";
+		table += "<tr><th colspan='2'>Grand Total</th><th>";
+		table += currencyFormatter.format(grandTotal);
+		table += "</th></tr>";
+		table += "</tfoot>";
 		table += "</table>";
 		
 		return table;
