@@ -10,20 +10,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet type=text/css href=style.css>
+<link type="text/css" rel="stylesheet" href="resources/css/stylesheet.css"/>
 <title>Online Store - Product Inventory</title>
 </head>
 <body>
-<div class=header>
+	<div class="header">
+    	<div class="nav">    		
+    		<ul id="nav_ul">
+				<li class="nav_li"><a href="welcome.jsp">Home</a></li>
+				<li class="nav_li"><a href="readProduct">Shop</a></li>
+				<li class="nav_li"><a href="GenerateCart">Cart</a></li>
+				<li class="nav_li"><a href="login?logout=true">Logout</a></li>
+			</ul>			
+		</div>		
+		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
+	</div>
+	
 <h1>Product Inventory</h1>
-</div>
-<p>
-	Welcome, ${user.fName}!
-</p>
+
 <div style="overflow-x:auto;">
 	<%= table %>
 </div>
-<br />
-<a href="login?logout=true">Logout</a>
+
+<div class="footer">
+		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+	</div>
+	
+	
 </body>
 </html>

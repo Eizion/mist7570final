@@ -84,7 +84,7 @@ public class ReadProductQuery {
 					table += currencyFormatter.format(product.getPrice());
 				table += "</td>";	
 				table += "<td>";
-					table += "<img src='" + product.getImageAddress() + "' />";
+					table += "<img class='plp' src='" + product.getImageAddress() + "' />";
 				table += "</td>";
 				table += "<td>";
 					table += product.getInventoryQuantity();

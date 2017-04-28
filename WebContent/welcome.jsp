@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	
-	String table = (String) request.getAttribute("table");
-
-%>    
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="resources/css/stylesheet.css"/>
-<title>Online Store - Cart</title>
+<title>Welcome</title>
 </head>
 <body>
 	<div class="header">
@@ -25,18 +19,16 @@
 		</div>		
 		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
 	</div>
-
-<h1>${user.fName}'s Shopping Cart</h1>
-
-<div>
-	<%= table %>
-</div>
-
-<a href="readProduct">Back</a>
-
-<br />
-
-<div class="footer">
+	
+	<h1>Home</h1>
+	
+	<p>
+	Welcome, ${user.fName}!
+	</p>
+	
+	<img class="hero" src="resources/images/onlineshop.jpg">
+	
+	<div class="footer">
 		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
 	</div>
 	

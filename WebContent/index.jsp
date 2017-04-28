@@ -7,6 +7,12 @@
         <title>MIST 7570 Final</title>
 </head>
 <body>
+
+	<div class="header">
+    	<div class="nav">    				
+		</div>		
+		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
+	</div>
     
     <h1>Log In</h1>
     
@@ -16,11 +22,16 @@
 		<input type="text" name="username" required /><br>
 		<label>Password</label>
 		<input type="password" name="password" required /><br>
-		<input type="submit" value="Login"><br>
+		<input type="submit" value="Login">
 		${errorMessage}
 	</form>
 	
+	<br>
 	<a href="registerForm.jsp">register</a>
+	
+		<div class="footer">
+		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+	</div>
 	
 </body>
 </html>

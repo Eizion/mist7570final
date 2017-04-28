@@ -8,6 +8,12 @@
 </head>
 <body>
 
+	<div class="header">
+    	<div class="nav">    				
+		</div>		
+		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
+	</div>
+
 	<h1>Please register for an account</h1>
 	
 	<form name="registration" action="register" method="post">
@@ -31,6 +37,10 @@
      <input type="submit" name="submit" value="Register">
      
   	</form>
+  	
+  		<div class="footer">
+		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+	</div>
 
 </body>
 </html>
