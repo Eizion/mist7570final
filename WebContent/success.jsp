@@ -8,9 +8,28 @@
 </head>
 <body>
 
-	<h1>You have successfully registered ${user.username}!</h1>
-	<p>Please <a href="index.jsp">login</a></p>
-	${errorMessage}
+	<div class="header">
+    	<div class="nav">    				
+		</div>		
+		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
+	</div>
+	
+	<div class="wrapper">
+	
+		<h1>You have successfully registered!</h1>
+		
+		<img class="hero" src="resources/images/success.jpg">
+		
+		<p>Please <a href="index.jsp">login</a></p>
+		${errorMessage}
+	
+	<div class="push"></div>
+	
+	</div>
+	
+	<footer class="footer">
+		<p>MIST 7570 Final by Daniel Crittenden and Joe Vo</p>
+	</footer>
         
 </body>
 </html>
