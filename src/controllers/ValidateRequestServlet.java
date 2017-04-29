@@ -51,10 +51,14 @@ public class ValidateRequestServlet extends HttpServlet {
 		String msg;
 		String submitValue;
 		int productId;
-		int quantityRequested;
+		int lastQuantityRequested = 0;
+		int quantityRequested = 0;
+		int quantityDifferenceRequested = 0;
 		int currentInventoryQuantity;
 		
-		// pull request entries
+		// pull request & session objects
+		
+		User user = (User) session.getAttribute("user");
 		productId = Integer.parseInt(request.getParameter("productId"));
 		quantityRequested = Integer.parseInt(request.getParameter("quantity"));
 		submitValue = request.getParameter("submit");
@@ -63,23 +67,45 @@ public class ValidateRequestServlet extends HttpServlet {
 		ReadProductQuery rpq = new ReadProductQuery("online_store", "root", "root");
 		currentInventoryQuantity = rpq.getInventoryQty(productId);
 		
-		if (currentInventoryQuantity >= quantityRequested && quantityRequested > 0) {
+		// calculate the quantity difference requested for cart quantity updates
+		
+		if (submitValue.equalsIgnoreCase("update")) {
+			// Query on previous cart quantity for product
+			ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
+			lastQuantityRequested = rcq.lookupQuantity(user, productId);
+		}
+		
+		quantityDifferenceRequested = quantityRequested - lastQuantityRequested;
+		
+		System.out.println(quantityRequested);
+		System.out.println(quantityDifferenceRequested);
+		
+		if (currentInventoryQuantity >= quantityDifferenceRequested && quantityRequested > 0){
 
 			url = "updateCart";
+			
+			// Resets quantity requested, if it was originally set to quantityDifferenceRequested
+			quantityDifferenceRequested += lastQuantityRequested;
 
 			request.setAttribute("productId", productId);
 			request.setAttribute("updateQuantity", quantityRequested);
 			request.setAttribute("submitValue", submitValue);
 			
-			System.out.println("validate: " + productId + " " + quantityRequested + " " + submitValue);
-			
 		} else {
-
-			url = "shop";
+			
+			if (submitValue.equals("Add to Cart")) {
+				url = "shop";
+			}
+			
+			else {
+				url = "cart";
+			}
+			
 			msg = "<div id='error'>Please enter a valid quantity</div><br />";
 			request.setAttribute("msg", msg);
 			
 		}
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

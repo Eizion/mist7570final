@@ -126,7 +126,7 @@ public class ReadCartQuery {
 		
 		table += "<table border='1px'>";
 		table += "<thead>";
-		table += "<tr><th>Product Name</th><th>Price</th><th>Quantity</th><th colspan='2'>Action</th><th>Total Price</th></tr>";
+		table += "<tr><th>Product Name</th><th>Inventory Remaining</th><th>Price</th><th>Quantity</th><th colspan='2'>Action</th><th>Total Price</th></tr>";
 		table += "</thead>";
 		
 		try {
@@ -142,12 +142,15 @@ public class ReadCartQuery {
 				totalPrice = product.getPrice() * quantity;
 				grandTotal += totalPrice;
 				
-				table += "<form action='updateCart'>";
+				table += "<form action='validate'>";
 				table += "<input type='hidden' name='productId' value='" + product.getId() + "'>";
 				table += "<tr>";
 				table += "<td>";
 					table += product.getName();
 				table += "</td>";
+				table += "<td>";
+				table += product.getInventoryQuantity();
+			table += "</td>";				
 				table += "<td>";
 					table += product.getPrice();
 				table += "</td>";				
@@ -172,7 +175,7 @@ public class ReadCartQuery {
 		}
 		
 		table += "<tfoot>";
-		table += "<tr><th colspan='5'>Grand Total</th><th>";
+		table += "<tr><th colspan='6'>Grand Total</th><th>";
 		table += currencyFormatter.format(grandTotal);
 		table += "</th></tr>";
 		table += "</tfoot>";
