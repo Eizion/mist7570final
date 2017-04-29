@@ -50,23 +50,39 @@ public class UpdateCartServlet extends HttpServlet {
 		int productId;
 		int cartQuantity;
 		int	updateQuantity;
-		
+		String submitValue;
 		
 		user = (User) session.getAttribute("user");
 		updateQuantity = Integer.parseInt(request.getParameter("quantity"));
 		productId = Integer.parseInt(request.getParameter("productId"));
+		submitValue = request.getParameter("submit");
 		
 		
 		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
 		UpdateCartQuery ucq = new UpdateCartQuery("online_store", "root", "root");
 		
-		// Check to see if product is already in cart
+		// Check to see if updating cart from cart page
+		System.out.println(request.getParameter("submit"));
 		
-		if(rcq.isInCart(user, productId) == true){
+		if (submitValue.equalsIgnoreCase("update") || submitValue.equalsIgnoreCase("remove") ) {
+			
+			if (updateQuantity == 0 || submitValue.equalsIgnoreCase("remove")) {
+				
+				ucq.doRemove(user, productId);
+				
+			} else {
+			
+				ucq.doUpdateQuantity(user, productId, updateQuantity);
+			
+			}
+			
+		// Check to see if product is already in cart
+			
+		} else if (rcq.isInCart(user, productId) == true){
 			// If it is in the cart increment quantity
 			cartQuantity = rcq.lookupQuantity(user, productId);
 			updateQuantity += cartQuantity;
-			ucq.doIncrementQuantity(user, productId, updateQuantity);
+			ucq.doUpdateQuantity(user, productId, updateQuantity);
 			
 		} else {
 			// Else, add to cart

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,12 @@ import model.User;
 /**
  * Servlet implementation class GenerateCartServlet
  */
-@WebServlet("/GenerateCart")
+@WebServlet(
+		description = "Controller for reading the cart table", 
+		urlPatterns = { 
+				"/GenerateCart", 
+				"/cart"
+		})
 public class GenerateCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,7 +59,13 @@ public class GenerateCartServlet extends HttpServlet {
 		rcq.doRead(user);
 		
 		// Iterate through DB and assign to HTML string
-		String table = rcq.getHTMLTable();
+		String table = "";
+		try {
+			table = rcq.getHTMLTable();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// Send string to JSP via request/response object
 		request.setAttribute("table", table);

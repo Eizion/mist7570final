@@ -116,36 +116,55 @@ public class ReadCartQuery {
 		}
 	} 
 	
-	public String getHTMLTable(){
+	
+	public String getHTMLTable() throws SQLException{
+		
 		String table = "";
-		String productName = "";
 		int quantity = 0;
 		double totalPrice = 0;
 		double grandTotal = 0;
+		
 		table += "<table border='1'>";
 		table += "<thead>";
-		table += "<tr><th>Product Name</th><th>Quantity</th><th>Total Price</th></tr>";
+		table += "<tr><th>Product Name</th><th>Price</th><th>Quantity</th><th colspan='2'>Action</th><th>Total Price</th></tr>";
 		table += "</thead>";
 		
 		try {
 			while(this.results.next()){
+				Product product = new Product();
+				product.setId(this.results.getInt("id"));
+				product.setName(this.results.getString("name"));
+				product.setPrice(this.results.getDouble("price"));
+				product.setImageAddress(this.results.getString("image_addr"));
+				product.setInventoryQuantity(this.results.getInt("inventory_qty"));
 				
-				productName = this.results.getString("name");
 				quantity = this.results.getInt("quantity");
-				totalPrice = this.results.getDouble("price") * quantity;
+				totalPrice = product.getPrice() * quantity;
 				grandTotal += totalPrice;
 				
+				table += "<form action='updateCart'>";
+				table += "<input type='hidden' name='productId' value='" + product.getId() + "'>";
 				table += "<tr>";
 				table += "<td>";
-					table += productName;
+					table += product.getName();
 				table += "</td>";
 				table += "<td>";
-					table += quantity;
-				table += "</td>";					
+					table += product.getPrice();
+				table += "</td>";				
+				table += "<td>";
+					table += "<input type='text' name='quantity' value='" + quantity + "'>";
+				table += "</td>";
+				table += "<td>";
+					table += " <input type='submit' name='submit' value='Update'>";
+				table += "</td>";
+				table += "<td>";
+					table += " <input type='submit' name='submit' value='Remove'>";
+				table += "</td>";				
 				table += "<td>";
 					table += currencyFormatter.format(totalPrice);
 				table += "</td>";		
 				table += "</tr>";
+				table += "</form>";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -153,12 +172,12 @@ public class ReadCartQuery {
 		}
 		
 		table += "<tfoot>";
-		table += "<tr><th colspan='2'>Grand Total</th><th>";
+		table += "<tr><th colspan='5'>Grand Total</th><th>";
 		table += currencyFormatter.format(grandTotal);
 		table += "</th></tr>";
 		table += "</tfoot>";
 		table += "</table>";
-		
+	
 		return table;
 	}
 

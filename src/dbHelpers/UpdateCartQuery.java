@@ -50,7 +50,7 @@ public class UpdateCartQuery {
 		}
 	}
 	
-	public void doIncrementQuantity(User user, int productId, int quantity){
+	public void doUpdateQuantity(User user, int productId, int quantity){
 		
 		String query = "UPDATE cart SET quantity=? WHERE userId=? and productId=?";
 		

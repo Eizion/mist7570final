@@ -61,7 +61,6 @@ public class ReadProductQuery {
 	public String getHTMLTable(){
 		String table = "";
 		
-		
 		table += "<table border='1'>";
 		table += "<tr><th>Name</th><th>Price</th><th>Image</th><th>Quantity In Stock</th><th colspan='2'>Action</th></tr>";
 		
@@ -94,7 +93,7 @@ public class ReadProductQuery {
 				table += "</td>";
 				table += "<td>";
 					if (product.getInventoryQuantity() >0) {
-						table += " <input type='submit' value='Add to Cart'>";
+						table += " <input type='submit' name='submit' value='Add to Cart'>";
 					} else {
 						table += "Out Of Stock";
 					}

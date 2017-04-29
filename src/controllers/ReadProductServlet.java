@@ -18,7 +18,8 @@ import dbHelpers.ReadProductQuery;
 		description = "Controller for reading the products table", 
 		urlPatterns = { 
 				"/ReadProductServlet", 
-				"/readProduct"
+				"/readProduct",
+				"/shop"
 		})
 public class ReadProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -12,8 +12,8 @@
     	<div class="nav">    		
     		<ul id="nav_ul">
 				<li class="nav_li"><a href="welcome.jsp">Home</a></li>
-				<li class="nav_li"><a href="readProduct">Shop</a></li>
-				<li class="nav_li"><a href="GenerateCart">Cart</a></li>
+				<li class="nav_li"><a href="shop">Shop</a></li>
+				<li class="nav_li"><a href="cart">Cart</a></li>
 				<li class="nav_li"><a href="login?logout=true">Logout</a></li>
 			</ul>			
 		</div>		
