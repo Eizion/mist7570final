@@ -54,14 +54,16 @@ public class GenerateCartServlet extends HttpServlet {
 		
 		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
 		
-		// Query on db
-		
-		rcq.doRead(user);
-		
 		// Iterate through DB and assign to HTML string
 		String table = "";
+		
 		try {
-			table = rcq.getHTMLTable();
+			// only show table for cart if there are items in it
+			if (rcq.doCount(user) > 0) { 
+				table = rcq.getHTMLTable(user);
+			} else {
+				table = "You have no items in your cart.";
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
