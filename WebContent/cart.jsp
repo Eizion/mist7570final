@@ -30,6 +30,7 @@
 	<div class="wrapper">
 
 		<h1>${user.fName}'s Shopping Cart</h1>
+		${msg }
 
 		<div>
 			<%= table %>
@@ -37,7 +38,7 @@
 
 		<br>
 
-		<a id="continue" href="readProduct">Continue Shopping</a>
+		<a id="continue" href="shop">Continue Shopping</a>
 
 		<div class="push"></div>
 

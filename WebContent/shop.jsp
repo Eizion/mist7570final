@@ -30,6 +30,7 @@
 	<div class="wrapper">
 	
 		<h1>Product Inventory</h1>
+		${msg }
 
 		<div style="overflow-x:auto;">
 			<%= table %>

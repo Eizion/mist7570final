@@ -58,6 +58,37 @@ public class ReadProductQuery {
 		}
 	}
 	
+	public int getInventoryQty(int productId) {
+		Product product = new Product();
+		String query = "SELECT * FROM product WHERE id=?";
+		
+		try {
+			PreparedStatement ps = this.connection.prepareStatement(query);
+			ps.setInt(1, productId);
+			this.results = ps.executeQuery();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			while(this.results.next()){
+				product.setId(this.results.getInt("id"));
+				product.setName(this.results.getString("name"));
+				product.setPrice(this.results.getDouble("price"));
+				product.setImageAddress(this.results.getString("image_addr"));
+				product.setInventoryQuantity(this.results.getInt("inventory_qty"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return product.getInventoryQuantity();
+	}
+	
 	public String getHTMLTable(){
 		String table = "";
 		
@@ -73,7 +104,7 @@ public class ReadProductQuery {
 				product.setImageAddress(this.results.getString("image_addr"));
 				product.setInventoryQuantity(this.results.getInt("inventory_qty"));
 				
-				table += "<form action='updateCart'>";
+				table += "<form action='validate'>";
 				table += "<input type='hidden' name='productId' value='" + product.getId() + "'>";
 				table += "<tr>";
 				table += "<td>";
@@ -89,7 +120,7 @@ public class ReadProductQuery {
 					table += product.getInventoryQuantity();
 				table += "</td>";					
 				table += "<td>";
-					table += "<input type='text' name='quantity' value='0'>";
+					table += "<input type='text' name='quantity' value='1'>";
 				table += "</td>";
 				table += "<td>";
 					if (product.getInventoryQuantity() >0) {

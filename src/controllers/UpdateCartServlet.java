@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dbHelpers.ReadCartQuery;
+import dbHelpers.ReadProductQuery;
 import dbHelpers.RegisterQuery;
 import dbHelpers.UpdateCartQuery;
 import model.User;
@@ -52,17 +53,24 @@ public class UpdateCartServlet extends HttpServlet {
 		int	updateQuantity;
 		String submitValue;
 		
-		user = (User) session.getAttribute("user");
-		updateQuantity = Integer.parseInt(request.getParameter("quantity"));
-		productId = Integer.parseInt(request.getParameter("productId"));
-		submitValue = request.getParameter("submit");
 		
+		user = (User) session.getAttribute("user");
+		
+		try {
+			productId = (Integer) request.getAttribute("productId");
+			updateQuantity = (Integer) request.getAttribute("updateQuantity");
+			submitValue = (String) request.getAttribute("submitValue");
+		} catch (NullPointerException e) {
+			productId = Integer.parseInt(request.getParameter("productId"));
+			updateQuantity = Integer.parseInt(request.getParameter("quantity"));
+			submitValue = request.getParameter("submit");	
+		}
 		
 		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
 		UpdateCartQuery ucq = new UpdateCartQuery("online_store", "root", "root");
+
 		
 		// Check to see if updating cart from cart page
-		System.out.println(request.getParameter("submit"));
 		
 		if (submitValue.equalsIgnoreCase("update") || submitValue.equalsIgnoreCase("remove") ) {
 			
@@ -89,7 +97,7 @@ public class UpdateCartServlet extends HttpServlet {
 			ucq.doAdd(user, productId, updateQuantity);
 		}
 
-		String url = "GenerateCart";
+		String url = "cart";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

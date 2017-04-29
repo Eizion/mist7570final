@@ -8,26 +8,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dbHelpers.ReadProductQuery;
+import dbHelpers.ReadCartQuery;
+import dbHelpers.RegisterQuery;
+import dbHelpers.UpdateCartQuery;
+import model.User;
+import utilities.Encryption;
 
 /**
- * Servlet implementation class ReadServlet
+ * Servlet implementation class RegisterServlet
  */
-@WebServlet(
-		description = "Controller for reading the products table", 
-		urlPatterns = { 
-				"/ReadProductServlet", 
-				"/readProduct",
-				"/shop"
-		})
-public class ReadProductServlet extends HttpServlet {
+@WebServlet("/updateProduct")
+public class UpdateProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReadProductServlet() {
+    public UpdateProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +35,7 @@ public class ReadProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
@@ -43,23 +43,7 @@ public class ReadProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Create a ReadQuery helper object
-		ReadProductQuery rpq = new ReadProductQuery("online_store", "root", "root");
-		
-		// Get the HTML table from the ReadQuery object
-		rpq.doRead();
-		String table = rpq.getHTMLTable();
-		
-		// Pass execution control to read.jsp along with the table
-		request.setAttribute("table", table);
-		String url = "/shop.jsp";
-		
-		// Gather message from request parameter, if available
-		String msg = (String) request.getAttribute("msg");
-		request.setAttribute("msg", msg);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
+
 	}
 
 }
