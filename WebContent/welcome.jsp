@@ -28,6 +28,8 @@
 		<p>Welcome, ${user.fName}!</p>
 	
 		<img class="hero" src="resources/images/onlineshop.jpg">
+		
+		<p><a href="shop">Start Shopping</a><p>
 	
 	</div>
 	

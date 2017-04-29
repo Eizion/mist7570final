@@ -135,3 +135,7 @@ input {
 .form input[type=submit]:hover {
     background: #d9b310;
 }
+
+#error {
+	color: red;
+}

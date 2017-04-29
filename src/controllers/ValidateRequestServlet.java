@@ -60,8 +60,12 @@ public class ValidateRequestServlet extends HttpServlet {
 		
 		User user = (User) session.getAttribute("user");
 		productId = Integer.parseInt(request.getParameter("productId"));
-		quantityRequested = Integer.parseInt(request.getParameter("quantity"));
 		submitValue = request.getParameter("submit");
+		try {
+			quantityRequested = Integer.parseInt(request.getParameter("quantity"));
+		} catch (NumberFormatException e) {
+			quantityRequested = 0;
+		}
 		
 		// query on productId to determine current inventory amount
 		ReadProductQuery rpq = new ReadProductQuery("online_store", "root", "root");
@@ -76,10 +80,7 @@ public class ValidateRequestServlet extends HttpServlet {
 		}
 		
 		quantityDifferenceRequested = quantityRequested - lastQuantityRequested;
-		
-		System.out.println(quantityRequested);
-		System.out.println(quantityDifferenceRequested);
-		
+
 		if ((currentInventoryQuantity >= quantityDifferenceRequested && quantityRequested > 0) || 
 				submitValue.equalsIgnoreCase("remove")) {
 
