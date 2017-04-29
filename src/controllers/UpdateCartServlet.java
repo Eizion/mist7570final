@@ -68,6 +68,8 @@ public class UpdateCartServlet extends HttpServlet {
 		
 		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
 		UpdateCartQuery ucq = new UpdateCartQuery("online_store", "root", "root");
+		
+		cartQuantity = rcq.lookupQuantity(user, productId);
 
 		
 		// Check to see if updating cart from cart page
@@ -79,8 +81,9 @@ public class UpdateCartServlet extends HttpServlet {
 				ucq.doRemove(user, productId);
 				
 			} else {
-			
-				ucq.doUpdateQuantity(user, productId, updateQuantity);
+	
+				ucq.doUpdateQuantity(user, productId, updateQuantity, cartQuantity);
+				
 			
 			}
 			
@@ -88,9 +91,8 @@ public class UpdateCartServlet extends HttpServlet {
 			
 		} else if (rcq.isInCart(user, productId) == true){
 			// If it is in the cart increment quantity
-			cartQuantity = rcq.lookupQuantity(user, productId);
 			updateQuantity += cartQuantity;
-			ucq.doUpdateQuantity(user, productId, updateQuantity);
+			ucq.doUpdateQuantity(user, productId, updateQuantity, cartQuantity);
 			
 		} else {
 			// Else, add to cart

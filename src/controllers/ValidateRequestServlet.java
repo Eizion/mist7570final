@@ -80,7 +80,8 @@ public class ValidateRequestServlet extends HttpServlet {
 		System.out.println(quantityRequested);
 		System.out.println(quantityDifferenceRequested);
 		
-		if (currentInventoryQuantity >= quantityDifferenceRequested && quantityRequested > 0){
+		if ((currentInventoryQuantity >= quantityDifferenceRequested && quantityRequested > 0) || 
+				submitValue.equalsIgnoreCase("remove")) {
 
 			url = "updateCart";
 			

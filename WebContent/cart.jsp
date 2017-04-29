@@ -45,7 +45,7 @@
 	</div>
 	
 	<footer class="footer">
-		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+		<p>MIST 7570 Final by Daniel Crittenden and Joe Vo</p>
 	</footer>
 	
 </body>

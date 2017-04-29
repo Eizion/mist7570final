@@ -29,18 +29,21 @@ public class UpdateProductQuery {
 		}
 	}
 	
-	public void doUpdateInventoryQuantity(int productId, int quantity){
+	public void changeInventoryQuantity(int productId, int cartQuantity){
 		
-		String query = "UPDATE product SET inventory_qty=? WHERE productId=?";
+		String query = "UPDATE product SET inventory_qty=? WHERE id=?";
+		ReadProductQuery rpq = new ReadProductQuery("online_store", "root", "root");
+		int productInventoryQuantity = rpq.getInventoryQty(productId);
 		
 		try {
 			
 			PreparedStatement ps = connection.prepareStatement(query);
 			
-			ps.setInt(1, quantity);
+			ps.setInt(1, productInventoryQuantity - cartQuantity);
 			ps.setInt(2, productId);
 			
 			ps.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

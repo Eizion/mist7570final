@@ -33,6 +33,7 @@ public class UpdateCartQuery {
 	public void doAdd(User user, int productId, int quantity) {
 		
 		String query = "INSERT INTO cart (userId, productId, quantity) VALUES (?, ?, ?)";
+		UpdateProductQuery upq = new UpdateProductQuery("online_store", "root", "root");
 		
 		try {
 			
@@ -44,25 +45,32 @@ public class UpdateCartQuery {
 			
 			ps.executeUpdate();
 			
+			// update inventory
+			upq.changeInventoryQuantity(productId, quantity);
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public void doUpdateQuantity(User user, int productId, int quantity){
+	public void doUpdateQuantity(User user, int productId, int updateQuantity, int cartQuantity){
 		
 		String query = "UPDATE cart SET quantity=? WHERE userId=? and productId=?";
+		UpdateProductQuery upq = new UpdateProductQuery("online_store", "root", "root");
 		
 		try {
 			
 			PreparedStatement ps = connection.prepareStatement(query);
 			
-			ps.setInt(1, quantity);
+			ps.setInt(1, updateQuantity);
 			ps.setInt(2, user.getId());
 			ps.setInt(3, productId);
 			
 			ps.executeUpdate();
+			
+			// update inventory
+			upq.changeInventoryQuantity(productId, updateQuantity - cartQuantity);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -73,6 +81,9 @@ public class UpdateCartQuery {
 	public void doRemove(User user, int productId) {
 		
 		String query = "DELETE FROM cart WHERE userId=? and productId=?";
+		UpdateProductQuery upq = new UpdateProductQuery("online_store", "root", "root");
+		ReadCartQuery rcq = new ReadCartQuery("online_store", "root", "root");
+		int cartQuantity = rcq.lookupQuantity(user, productId);
 		
 		try {
 			PreparedStatement ps = connection.prepareStatement(query);
@@ -81,6 +92,10 @@ public class UpdateCartQuery {
 			ps.setInt(2, productId);
 			
 			ps.executeUpdate();
+			
+			// update inventory
+			
+			upq.changeInventoryQuantity(productId, -cartQuantity);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
