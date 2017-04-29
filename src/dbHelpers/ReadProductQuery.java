@@ -93,7 +93,7 @@ public class ReadProductQuery {
 		String table = "";
 		
 		table += "<table border='1px'>";
-		table += "<tr><th>Name</th><th>Price</th><th>Image</th><th>Quantity In Stock</th><th colspan='2'>Action</th></tr>";
+		table += "<tr><th>Name</th><th>Price</th><th>Image</th><th>Inventory</th><th colspan='2'></th></tr>";
 		
 		try {
 			while(this.results.next()){
@@ -120,11 +120,11 @@ public class ReadProductQuery {
 					table += product.getInventoryQuantity();
 				table += "</td>";					
 				table += "<td>";
-					table += "<input type='text' name='quantity' value='1'>";
+					table += "<input type='text' class='textbox' name='quantity' value='1'>";
 				table += "</td>";
 				table += "<td>";
 					if (product.getInventoryQuantity() >0) {
-						table += " <input type='submit' name='submit' value='Add to Cart'>";
+						table += " <input type='submit' class='button' name='submit' value='Add to Cart'>";
 					} else {
 						table += "Out Of Stock";
 					}

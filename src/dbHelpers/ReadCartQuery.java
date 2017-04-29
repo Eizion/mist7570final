@@ -155,13 +155,13 @@ public class ReadCartQuery {
 					table += product.getPrice();
 				table += "</td>";				
 				table += "<td>";
-					table += "<input type='text' name='quantity' value='" + quantity + "'>";
+					table += "<input type='text' class='textbox' name='quantity' value='" + quantity + "'>";
 				table += "</td>";
 				table += "<td>";
-					table += " <input type='submit' name='submit' value='Update'>";
+					table += " <input type='submit' class='button' name='submit' value='Update'>";
 				table += "</td>";
 				table += "<td>";
-					table += " <input type='submit' name='submit' value='Remove'>";
+					table += " <input type='submit' class='button' name='submit' value='Remove'>";
 				table += "</td>";				
 				table += "<td>";
 					table += currencyFormatter.format(totalPrice);

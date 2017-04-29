@@ -19,7 +19,7 @@ html {
 .header {
 	height: auto;
 	width: 100%;
-	background-color: #4484ce;
+	background: linear-gradient(141deg, #295f9c 0%, #4484ce 75%);
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -41,6 +41,8 @@ html {
 	line-height: 50px;
 	color: #ffffff;
 }
+
+
 
 .nav {
 	width: 70%;
@@ -102,13 +104,21 @@ table {
 	background-color: #f19f4d;
 }
 
+
 th {
-	background-color: #f9cf00;
+	background-color: #4484ce;
 	padding: 10px;
+	color: white;
 }
 
 td {
-	padding: 5px;
+	text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #f7c594;
 }
 
 .plp {
@@ -138,4 +148,37 @@ input {
 
 #error {
 	color: red;
+}
+
+.button {
+  display: inline-block;
+  padding: 5px 5px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: #4484ce;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px #999;
+}
+
+.button:hover {
+	background-color: #f9cf00;
+	color: black;
+}
+
+.button:active {
+  background-color: #f9cf00;
+  color: black;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.textbox {
+	width: 75px;
+	font-size: 24px;
+	text-align: center;
 }
