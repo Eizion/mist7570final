@@ -61,7 +61,7 @@ public class ReadProductQuery {
 	public String getHTMLTable(){
 		String table = "";
 		
-		table += "<table border='1'>";
+		table += "<table border='1px'>";
 		table += "<tr><th>Name</th><th>Price</th><th>Image</th><th>Quantity In Stock</th><th colspan='2'>Action</th></tr>";
 		
 		try {

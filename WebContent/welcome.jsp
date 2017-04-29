@@ -8,6 +8,7 @@
 <title>Welcome</title>
 </head>
 <body>
+
 	<div class="header">
     	<div class="nav">    		
     		<ul id="nav_ul">
@@ -20,17 +21,21 @@
 		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
 	</div>
 	
-	<h1>Home</h1>
+	<div class="wrapper">
 	
-	<p>
-	Welcome, ${user.fName}!
-	</p>
+		<h1>Home</h1>
 	
-	<img class="hero" src="resources/images/onlineshop.jpg">
+		<p>Welcome, ${user.fName}!</p>
 	
-	<div class="footer">
-		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+		<img class="hero" src="resources/images/onlineshop.jpg">
+	
 	</div>
+	
+	<div class="push"></div>
+	
+	<footer class="footer">
+		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+	</footer>
 	
 </body>
 </html>

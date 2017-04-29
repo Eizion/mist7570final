@@ -16,25 +16,36 @@
 	</div>
     
     <div class="wrapper">
-    <h1>Log In</h1>
     
-    <form id="loginForm" action="login" method="post">
+    	<h1>Log In</h1>
+    	
+    	<div class="form">
+    
+    		<form name="loginForm" action="login" method="post">
+				<table>
+					<tr>
+						<td><label>Username</label></td>
+						<td><input type="text" name="username" required /></td>
+					</tr>
+					<tr>
+						<td><label>Password</label></td>
+						<td><input type="password" name="password" required /></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Login"></td>
+						<td><a href="registerForm.jsp">register</a></td>
+					</tr>
+				</table>
+				${errorMessage}
+			</form>
+		
+		</div>
 	
-		<label>Username</label>
-		<input type="text" name="username" required /><br>
-		<label>Password</label>
-		<input type="password" name="password" required /><br>
-		<input type="submit" value="Login">
-		${errorMessage}
-	</form>
-	
-	<br>
-	<a href="registerForm.jsp">register</a>
-	
-	<div class="push"></div>
+		<div class="push"></div>
+		
 	</div>
 	
-		<footer class="footer">
+	<footer class="footer">
 		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
 	</footer>
 	

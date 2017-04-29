@@ -14,6 +14,7 @@
 <title>Online Store - Product Inventory</title>
 </head>
 <body>
+
 	<div class="header">
     	<div class="nav">    		
     		<ul id="nav_ul">
@@ -26,16 +27,21 @@
 		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
 	</div>
 	
-<h1>Product Inventory</h1>
-
-<div style="overflow-x:auto;">
-	<%= table %>
-</div>
-
-<div class="footer">
-		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
-	</div>
+	<div class="wrapper">
 	
+		<h1>Product Inventory</h1>
+
+		<div style="overflow-x:auto;">
+			<%= table %>
+		</div>
+
+		<div class="push"></div>
+
+	</div>
+
+	<footer class="footer">
+		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+	</footer>
 	
 </body>
 </html>

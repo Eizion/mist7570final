@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="resources/css/stylesheet.css"/>
-<title>MIST 7570 Final</title>
+<title>Online Store - Registration</title>
 </head>
 <body>
 
@@ -15,33 +15,46 @@
 		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
 	</div>
 
-	<h1>Please register for an account</h1>
+	<div class="wrapper">
+
+		<h1>Account Registration</h1>
+		
+		<div class="form">
 	
-	<form name="registration" action="register" method="post">
-    
-     <label>
-        Username: 
-     </label>
-     <input type="text" name="user" required /><br />
-     <label>
-        Password: 
-     </label>
-     <input type="password" name="password" required/><br />
-     <label>
-        First Name: 
-     </label>
-     <input type="text" name="fname" required/><br />
-     <label>
-        Last Name: 
-     </label>
-     <input type="text" name="lname" required/><br />
-     <input type="submit" name="submit" value="Register">
-     
-  	</form>
+			<form name="registration" action="register" method="post">
+    			<table>
+    				<tr>
+    					<td><label>Username:</label></td>
+     					<td><input type="text" name="user" required /></td>
+     				</tr>
+     				<tr>
+     					<td><label>Password:</label></td>
+     					<td><input type="password" name="password" required/></td>
+     				</tr>
+     				<tr>
+     					<td><label>First Name:</label></td>
+     					<td><input type="text" name="fname" required/></td>
+     				</tr>
+     				<tr>
+	    				<td><label>Last Name:</label></td>
+     					<td><input type="text" name="lname" required/></td>
+     				</tr>
+     				<tr>
+     					<td><input type="submit" name="submit" value="Register"></td>
+     					<td><a href="index.jsp">back</a></td>
+     				</tr>
+     			</table>
+  		</form>
+  		
+  		</div>
+
+  		<div class="push"></div>
   	
-  		<div class="footer">
+  	</div>
+  		
+	<footer class="footer">
 		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
-	</div>
+	</footer>
 
 </body>
 </html>

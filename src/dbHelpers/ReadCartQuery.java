@@ -124,7 +124,7 @@ public class ReadCartQuery {
 		double totalPrice = 0;
 		double grandTotal = 0;
 		
-		table += "<table border='1'>";
+		table += "<table border='1px'>";
 		table += "<thead>";
 		table += "<tr><th>Product Name</th><th>Price</th><th>Quantity</th><th colspan='2'>Action</th><th>Total Price</th></tr>";
 		table += "</thead>";

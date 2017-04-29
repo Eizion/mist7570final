@@ -14,6 +14,7 @@
 <title>Online Store - Cart</title>
 </head>
 <body>
+
 	<div class="header">
     	<div class="nav">    		
     		<ul id="nav_ul">
@@ -25,20 +26,26 @@
 		</div>		
 		<h2 style="font-family: Verdana">MIST 7570 Final</h2>        
 	</div>
+	
+	<div class="wrapper">
 
-<h1>${user.fName}'s Shopping Cart</h1>
+		<h1>${user.fName}'s Shopping Cart</h1>
 
-<div>
-	<%= table %>
-</div>
+		<div>
+			<%= table %>
+		</div>
 
-<a href="readProduct">Back</a>
+		<br>
 
-<br />
+		<a id="continue" href="readProduct">Continue Shopping</a>
 
-<div class="footer">
-		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+		<div class="push"></div>
+
 	</div>
+	
+	<footer class="footer">
+		<p>MIST 7500 Final by Daniel Crittenden and Joe Vo</p>
+	</footer>
 	
 </body>
 </html>
