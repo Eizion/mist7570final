@@ -5,7 +5,7 @@
 	String table = (String) request.getAttribute("table");
 
 %>    
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,7 +29,7 @@
 	
 	<div class="wrapper">
 
-		<h1>${user.fName}'s Shopping Cart</h1>
+		<h1><c:out value="${user.fName}'s" /> Shopping Cart</h1>
 		${msg }
 
 		<div>
