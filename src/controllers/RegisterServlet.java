@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dbHelpers.CheckUserQuery;
+import dbHelpers.LoginQuery;
 import dbHelpers.RegisterQuery;
 import model.User;
 import utilities.Encryption;
@@ -19,6 +21,7 @@ import utilities.Encryption;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String url;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,18 +52,27 @@ public class RegisterServlet extends HttpServlet {
 		Encryption pwd = new Encryption();
 		String encryptedPass = pwd.encrypt(password);
 		
-		User user = new User();
+		CheckUserQuery cu = new CheckUserQuery("online_store", "root", "root");
+		User user = cu.checkUser(userName);
 		
-		user.setUsername(userName);
-		user.setPassword(encryptedPass);
-		user.setfName(fName);
-		user.setlName(lName);
-		
-		RegisterQuery rq = new RegisterQuery("online_store", "root", "root");
-		
-		rq.doRegister(user);
-		
-		String url = "success.jsp";
+		if (user != null){
+			String errorMessage = "Error: Username already exists. Try another one.";
+			request.setAttribute("errorMessage", errorMessage);
+			url = "registerForm.jsp";
+		} else {
+			User newUser = new User();
+			
+			newUser.setUsername(userName);
+			newUser.setPassword(encryptedPass);
+			newUser.setfName(fName);
+			newUser.setlName(lName);
+			
+			RegisterQuery rq = new RegisterQuery("online_store", "root", "root");
+			
+			rq.doRegister(newUser);
+			
+			url = "success.jsp";
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

@@ -44,6 +44,7 @@
      					<td><a href="index.jsp">back</a></td>
      				</tr>
      			</table>
+     			${errorMessage}
   		</form>
   		
   		</div>
