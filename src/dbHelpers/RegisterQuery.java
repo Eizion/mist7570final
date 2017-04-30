@@ -3,6 +3,7 @@ package dbHelpers;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.User;
@@ -10,6 +11,7 @@ import model.User;
 public class RegisterQuery {
 	
 	private Connection connection;
+	private ResultSet results;
 	
 	public RegisterQuery(String dbName, String uname, String pwd) {
 		
@@ -44,6 +46,7 @@ public class RegisterQuery {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e);
 		}
 	}
 
